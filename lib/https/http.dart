@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:loyalty_app/configs/routes.dart';
+import 'package:loyalty_app/https/auth_interceptor.dart';
 import 'package:loyalty_app/https/error_interceptor.dart';
 
 const storage = FlutterSecureStorage();
@@ -22,6 +23,6 @@ final dio =
         ),
       )
       ..interceptors.addAll([
-        // AuthInterceptor(storage: storage, router: router),
-        ErrorInterceptor(router: router),
+        AuthInterceptor(storage: storage, router: router),
+        ErrorInterceptor(),
       ]);

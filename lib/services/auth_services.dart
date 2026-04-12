@@ -11,12 +11,8 @@ class AuthServices {
     try {
       final response = await http.post('/v1/users/login', data: dto.toJson());
       final data = response.data;
-      final accessToken = data['data']['accessToken'];
-      if (accessToken != null) {
-        await storage.write(key: 'accessToken', value: accessToken);
-      }
       return ApiResponse.success(
-        data: data,
+        data: data['data'],
         message: data['message'],
         statusCode: response.statusCode,
       );
