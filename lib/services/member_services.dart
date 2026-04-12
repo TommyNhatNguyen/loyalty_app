@@ -47,4 +47,17 @@ class MemberServices {
       return ApiResponse.fromDioException(e);
     }
   }
+
+  Future<ApiResponse<void>> createMember(MemberCreateDTO payload) async {
+    try {
+      final response = await http.post('/v1/members', data: payload.toJson());
+      return ApiResponse.success(
+        data: null,
+        message: response.data['message'],
+        statusCode: response.statusCode,
+      );
+    } on DioException catch (e) {
+      return ApiResponse.fromDioException(e);
+    }
+  }
 }

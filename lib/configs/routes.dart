@@ -1,9 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loyalty_app/blocs/member/member_bloc.dart';
+import 'package:loyalty_app/screens/auth_screen.dart';
 import 'package:loyalty_app/screens/error_screen.dart';
 import 'package:loyalty_app/screens/home_screen.dart';
 import 'package:loyalty_app/screens/profile_screen.dart';
+import 'package:loyalty_app/screens/register_screen.dart';
+import 'package:loyalty_app/screens/sign_in_screen.dart';
 import 'package:loyalty_app/screens/test_page.dart';
 
 // GoRouter configuration
@@ -19,6 +22,34 @@ final router = GoRouter(
           child: ProfileScreen(),
         );
       },
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return AuthScreen(
+          navigationShell: navigationShell,
+          goRouterState: state,
+        );
+      },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/sign-in',
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: SignInScreen()),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/register',
+              pageBuilder: (context, state) =>
+                  const NoTransitionPage(child: RegisterScreen()),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(path: '/error', builder: (context, state) => const ErrorScreen()),
   ],
