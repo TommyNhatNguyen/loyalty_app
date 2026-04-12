@@ -47,7 +47,7 @@ MemberCreateDTO _$MemberCreateDTOFromJson(Map<String, dynamic> json) =>
     MemberCreateDTO(
       user: json['user'] == null
           ? null
-          : User.fromJson(json['user'] as Map<String, dynamic>),
+          : UserDTO.fromJson(json['user'] as Map<String, dynamic>),
       first_name: json['first_name'] as String?,
       last_name: json['last_name'] as String?,
       email: json['email'] as String?,

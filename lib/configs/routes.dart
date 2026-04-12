@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loyalty_app/blocs/member/member_bloc.dart';
+import 'package:loyalty_app/blocs/member/member_register/member_register_bloc.dart';
 import 'package:loyalty_app/screens/auth_screen.dart';
-import 'package:loyalty_app/screens/error_screen.dart';
 import 'package:loyalty_app/screens/home_screen.dart';
 import 'package:loyalty_app/screens/profile_screen.dart';
 import 'package:loyalty_app/screens/register_screen.dart';
@@ -44,13 +44,17 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: '/register',
-              pageBuilder: (context, state) =>
-                  const NoTransitionPage(child: RegisterScreen()),
+              pageBuilder: (context, state) => NoTransitionPage(
+                child: BlocProvider(
+                  create: (context) => MemberRegisterBloc(),
+                  child: const RegisterScreen(),
+                ),
+              ),
             ),
           ],
         ),
       ],
     ),
-    GoRoute(path: '/error', builder: (context, state) => const ErrorScreen()),
+    GoRoute(path: '/error', builder: (context, state) => const TestPage()),
   ],
 );

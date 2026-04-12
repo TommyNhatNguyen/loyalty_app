@@ -3,14 +3,47 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loyalty_app/themes/app_colors.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
   final StatefulNavigationShell navigationShell;
   final GoRouterState goRouterState;
+
   const AuthScreen({
     super.key,
     required this.navigationShell,
     required this.goRouterState,
   });
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen>
+    with SingleTickerProviderStateMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 2,
+      initialIndex: widget.navigationShell.currentIndex,
+      vsync: this,
+    );
+  }
+
+  @override
+  void didUpdateWidget(covariant AuthScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (_tabController.index != widget.navigationShell.currentIndex) {
+      _tabController.animateTo(widget.navigationShell.currentIndex);
+    }
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +55,11 @@ class AuthScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 16),
-              _buildHeader(context, goRouterState),
+              _buildHeader(context, widget.goRouterState),
               const SizedBox(height: 16),
               _buildTabs(context),
               const SizedBox(height: 16),
-              Expanded(child: navigationShell),
+              Expanded(child: widget.navigationShell),
             ],
           ),
         ),
@@ -35,37 +68,34 @@ class AuthScreen extends StatelessWidget {
   }
 
   Widget _buildTabs(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      initialIndex: navigationShell.currentIndex,
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.mutedText.withAlpha(50),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.mutedText.withAlpha(50),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.all(4),
+      child: TabBar(
+        controller: _tabController,
+        onTap: (index) => widget.navigationShell.goBranch(index),
+        dividerColor: Colors.transparent,
+        indicatorSize: TabBarIndicatorSize.tab,
+        indicator: BoxDecoration(
+          color: AppColors.deepNavy,
           borderRadius: BorderRadius.circular(12),
         ),
-        padding: const EdgeInsets.all(4),
-        child: TabBar(
-          onTap: (index) => navigationShell.goBranch(index),
-          dividerColor: Colors.transparent,
-          indicatorSize: TabBarIndicatorSize.tab,
-          indicator: BoxDecoration(
-            color: AppColors.deepNavy,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          splashBorderRadius: BorderRadius.circular(12),
-          unselectedLabelColor: AppColors.mutedText,
-          labelColor: AppColors.lightSurface,
-          unselectedLabelStyle: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-          labelStyle: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-          tabs: const [
-            Tab(text: "Sign In"),
-            Tab(text: "Register"),
-          ],
-        ),
+        splashBorderRadius: BorderRadius.circular(12),
+        unselectedLabelColor: AppColors.mutedText,
+        labelColor: AppColors.lightSurface,
+        unselectedLabelStyle: Theme.of(
+          context,
+        ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+        labelStyle: Theme.of(
+          context,
+        ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+        tabs: const [
+          Tab(text: "Sign In"),
+          Tab(text: "Register"),
+        ],
       ),
     );
   }

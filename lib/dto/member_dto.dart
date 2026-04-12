@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:loyalty_app/models/user.dart';
+import 'package:loyalty_app/dto/user_dto.dart';
 
 part 'member_dto.g.dart';
 
@@ -51,7 +51,7 @@ class MemberCreateDTO extends Equatable {
     this.created_by_id,
   });
 
-  final User? user;
+  final UserDTO? user;
   final String? first_name;
   final String? last_name;
   final String? email;

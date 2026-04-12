@@ -7,7 +7,7 @@ List<Map<String, dynamic>> routes = [
   {"path": "/", "widget": TestPage()},
   {"path": "/home", "widget": HomeScreen()},
   {"path": "/profile", "widget": ProfileScreen()},
-  {"path": "/sign-in", "widget": "Auth screen"},
+  {"path": "/register", "widget": "Auth screen"},
 ];
 
 class TestPage extends StatelessWidget {

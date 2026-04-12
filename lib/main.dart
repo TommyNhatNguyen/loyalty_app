@@ -15,6 +15,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ToastificationWrapper(
+      config: ToastificationConfig(
+        animationDuration: Duration(milliseconds: 500),
+      ),
       child: MaterialApp.router(
         routerConfig: router,
         theme: appTheme,

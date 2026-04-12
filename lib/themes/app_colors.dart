@@ -19,6 +19,7 @@ class AppColors {
   static const border = Color(0xFFE9ECF3);
   static const mutedText = Color(0xFF6B7A99);
   static const darkSurface = Color(0xFF1A1D2E);
+  
   static const lightSurface = Color(0xFFFFFFFF);
 }
 
@@ -45,39 +46,39 @@ final appTheme = ThemeData(
   textTheme: GoogleFonts.interTextTheme().copyWith(
     headlineSmall: GoogleFonts.inter(
       fontWeight: FontWeight.w400,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     bodyMedium: GoogleFonts.inter(
       fontWeight: FontWeight.w400,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     bodySmall: GoogleFonts.inter(
       fontWeight: FontWeight.w400,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     displayLarge: GoogleFonts.poppins(
       fontWeight: FontWeight.w700,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     displayMedium: GoogleFonts.poppins(
       fontWeight: FontWeight.w700,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     headlineMedium: GoogleFonts.poppins(
       fontWeight: FontWeight.w600,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     titleLarge: GoogleFonts.inter(
       fontWeight: FontWeight.w500,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     bodyLarge: GoogleFonts.inter(
       fontWeight: FontWeight.w400,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
     labelSmall: GoogleFonts.jetBrainsMono(
       letterSpacing: 0.06,
-      color: AppColors.surface,
+      color: AppColors.deepNavy,
     ),
   ),
   useMaterial3: true,
