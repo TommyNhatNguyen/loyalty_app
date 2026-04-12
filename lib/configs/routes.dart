@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:loyalty_app/blocs/member/member_bloc.dart';
 import 'package:loyalty_app/screens/error_screen.dart';
-import 'package:loyalty_app/screens/home_page.dart';
+import 'package:loyalty_app/screens/home_screen.dart';
 import 'package:loyalty_app/screens/profile_screen.dart';
 import 'package:loyalty_app/screens/test_page.dart';
 
