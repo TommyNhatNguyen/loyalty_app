@@ -390,6 +390,7 @@ Widget _buildAvatar(BuildContext context, MemberState state) {
 Widget _buildName(BuildContext context, MemberState state) {
   final fullname =
       "${state.member?.first_name ?? ""} ${state.member?.last_name ?? ""}";
+  print(fullname);
   return Column(
     children: [
       Text(

@@ -21,6 +21,7 @@ class MemberBloc extends Bloc<MemberEvent, MemberState> {
         id: event.id,
         payload: event.payload,
       );
+      print(response.data);
       if (response.success) {
         emit(
           state.copyWith(
