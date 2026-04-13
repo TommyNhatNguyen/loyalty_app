@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:loyalty_app/blocs/member/member_bloc.dart';
 import 'package:loyalty_app/blocs/member/member_event.dart';
@@ -31,25 +30,14 @@ class ProfileScreen extends StatelessWidget {
               SliverAppBar(
                 centerTitle: false,
                 pinned: true,
-                automaticallyImplyLeading: false,
                 title: SizedBox(
                   child: Row(
                     children: [
-                      IconButton.filled(
-                        onPressed: () => context.pop(),
-                        icon: Icon(CupertinoIcons.left_chevron),
-                        alignment: Alignment.center,
-                        style: Theme.of(context).iconButtonTheme.style
-                            ?.copyWith(
-                              backgroundColor: WidgetStateProperty.all(
-                                Colors.white24.withAlpha(50),
-                              ),
-                            ),
-                      ),
-                      const SizedBox(width: 16),
                       Text(
                         "My Profile",
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: AppColors.surface,
+                        ),
                       ),
                     ],
                   ),

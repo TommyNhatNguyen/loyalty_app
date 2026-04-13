@@ -5,11 +5,14 @@ import 'package:loyalty_app/blocs/auth/sign_in/sign_in_bloc.dart';
 import 'package:loyalty_app/blocs/member/member_bloc.dart';
 import 'package:loyalty_app/blocs/member/member_register/member_register_bloc.dart';
 import 'package:loyalty_app/https/http.dart';
-import 'package:loyalty_app/screens/auth_screen.dart';
-import 'package:loyalty_app/screens/home_screen.dart';
-import 'package:loyalty_app/screens/profile_screen.dart';
-import 'package:loyalty_app/screens/register_screen.dart';
-import 'package:loyalty_app/screens/sign_in_screen.dart';
+import 'package:loyalty_app/screens/auth/auth_screen.dart';
+import 'package:loyalty_app/screens/auth/register_screen.dart';
+import 'package:loyalty_app/screens/auth/sign_in_screen.dart';
+import 'package:loyalty_app/screens/home/history_screen.dart';
+import 'package:loyalty_app/screens/home/home_layout_screen.dart';
+import 'package:loyalty_app/screens/home/home_screen.dart';
+import 'package:loyalty_app/screens/home/profile_screen.dart';
+import 'package:loyalty_app/screens/home/promo_screen.dart';
 import 'package:loyalty_app/screens/test_page.dart';
 
 // GoRouter configuration
@@ -20,21 +23,58 @@ final router = GoRouter(
       if (token != null && token.isNotEmpty && !Jwt.isExpired(token)) {
         return '/';
       }
-      return '/';
+      return '/home';
     }
     return null;
   },
   routes: [
     GoRoute(path: '/', builder: (context, state) => const TestPage()),
-    GoRoute(path: '/home', builder: (context, state) => const HomeScreen()),
-    GoRoute(
-      path: '/profile',
-      builder: (context, state) {
-        return BlocProvider(
-          create: (context) => MemberBloc(),
-          child: ProfileScreen(),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return HomeLayoutScreen(
+          navigationShell: navigationShell,
+          goRouterState: state,
         );
       },
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/home',
+              builder: (context, state) => const HomeScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/promo',
+              builder: (context, state) => const PromoScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/history',
+              builder: (context, state) => const HistoryScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/profile',
+              builder: (context, state) {
+                return BlocProvider(
+                  create: (context) => MemberBloc(),
+                  child: ProfileScreen(),
+                );
+              },
+            ),
+          ],
+        ),
+      ],
     ),
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {

@@ -50,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
             title: Text(state.message ?? 'Signed in successfully'),
             type: ToastificationType.success,
           );
-          context.go('/profile');
+          context.go('/home');
         }
       },
       child: SingleChildScrollView(

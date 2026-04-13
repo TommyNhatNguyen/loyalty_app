@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:loyalty_app/screens/home_screen.dart';
-import 'package:loyalty_app/screens/profile_screen.dart';
+import 'package:loyalty_app/screens/home/profile_screen.dart';
 
 List<Map<String, dynamic>> routes = [
   {"path": "/", "widget": TestPage()},
-  {"path": "/home", "widget": HomeScreen()},
+  {"path": "/home", "widget": "Home screen"},
   {"path": "/profile", "widget": ProfileScreen()},
   {"path": "/register", "widget": "Auth screen"},
 ];
