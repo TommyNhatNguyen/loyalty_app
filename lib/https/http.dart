@@ -6,7 +6,6 @@ import 'package:loyalty_app/https/auth_interceptor.dart';
 import 'package:loyalty_app/https/error_interceptor.dart';
 
 const storage = FlutterSecureStorage();
-
 final dio =
     Dio(
         BaseOptions(

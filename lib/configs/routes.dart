@@ -21,9 +21,9 @@ final router = GoRouter(
     if (state.uri.path == '/') {
       final token = await storage.read(key: 'accessToken');
       if (token != null && token.isNotEmpty && !Jwt.isExpired(token)) {
-        return '/sign-in';
+        return '/home';
       }
-      return '/home';
+      return '/sign-in';
     }
     return null;
   },
